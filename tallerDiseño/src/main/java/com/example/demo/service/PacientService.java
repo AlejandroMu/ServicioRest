@@ -5,11 +5,12 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
-import com.example.demo.model.Pacient;
 import com.example.demo.repository.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import edu.icesi.model.*;
 @Service
 public class PacientService{
     @Autowired

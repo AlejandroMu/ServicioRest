@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.*;
+import edu.icesi.model.*;
 import com.example.demo.service.InventoryService;
 import com.example.demo.service.MedicineService;
 

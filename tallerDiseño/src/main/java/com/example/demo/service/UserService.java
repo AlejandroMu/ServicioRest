@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
-import com.example.demo.model.*;
+import edu.icesi.model.*;
 import com.example.demo.repository.*;
 
 import org.springframework.beans.factory.annotation.Autowired;

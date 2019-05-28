@@ -2,7 +2,7 @@ package com.example.demo.controller;
 
 import java.util.*;
 
-import com.example.demo.model.*;
+import edu.icesi.model.*;
 import com.example.demo.service.MedicineService;
 
 import org.springframework.beans.factory.annotation.Autowired;

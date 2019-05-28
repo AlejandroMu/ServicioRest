@@ -11,9 +11,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
+import edu.icesi.model.*;
 import com.example.demo.TallerDiseñoApplication;
-import com.example.demo.model.*;
 import com.example.demo.repository.MedicineRepository;
 import com.example.demo.repository.PacientRepository;
 import com.example.demo.service.InventoryService;

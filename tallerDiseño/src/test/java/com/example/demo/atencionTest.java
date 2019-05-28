@@ -13,11 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.example.demo.model.Medicine;
-import com.example.demo.model.MedicineInventory;
-import com.example.demo.model.Pacient;
-import com.example.demo.model.Supply;
-import com.example.demo.model.UrgencyAtention;
+import edu.icesi.model.*;
 import com.example.demo.repository.MedicineRepository;
 import com.example.demo.repository.PacientRepository;
 import com.example.demo.service.AtentionService;

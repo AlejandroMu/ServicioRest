@@ -5,9 +5,10 @@ import java.util.*;
 import javax.annotation.PostConstruct;
 
 import com.example.demo.repository.*;
-import com.example.demo.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import edu.icesi.model.*;
 
 @Service
 public class InventoryService {

@@ -1,9 +1,7 @@
 package com.example.demo.controller;
 
 import java.util.*;
-
-import com.example.demo.model.ListaMedicine;
-import com.example.demo.model.Medicine;
+import edu.icesi.model.*;
 import com.example.demo.service.InventoryService;
 import com.example.demo.service.MedicineService;
 
