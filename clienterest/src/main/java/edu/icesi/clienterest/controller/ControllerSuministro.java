@@ -1,9 +1,9 @@
-package com.example.demo.controller;
+package edu.icesi.clienterest.controller;
 
 import java.util.*;
 
+import edu.icesi.clienterest.Delegado.MedicineDelegado;
 import edu.icesi.model.*;
-import com.example.demo.service.MedicineService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ControllerSuministro{
 
     @Autowired
-    private MedicineService medicineService;
+    private MedicineDelegado medicineService;
     
     @GetMapping(value = "/suministro")
     public String agregarSuministro(@ModelAttribute(value = "atencion") UrgencyAtention atencion,Model m) {

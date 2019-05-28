@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import edu.icesi.clienterest.Delegado.AtencionDelegado;
+import edu.icesi.clienterest.Delegado.MedicineDelegado;
 import edu.icesi.model.*;
 
 
@@ -16,9 +18,9 @@ import edu.icesi.model.*;
 public class Controller {
 
     @Autowired
-    private AtentionService atentionService;
+    private AtencionDelegado atentionService;
     @Autowired
-    private MedicineService medicineService;
+    private MedicineDelegado medicineService;
 
     @GetMapping("/login")
     public String getLogin() {

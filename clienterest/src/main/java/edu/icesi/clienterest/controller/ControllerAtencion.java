@@ -1,9 +1,9 @@
-package com.example.demo.controller;
-
+package edu.icesi.clienterest.controller;
 import java.util.*;
 
+import edu.icesi.clienterest.Delegado.AtencionDelegado;
+import edu.icesi.clienterest.Delegado.PacienteDelegado;
 import edu.icesi.model.*;
-import com.example.demo.service.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,9 +16,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class ControllerAtencion {
     @Autowired
-    private AtentionService atentionService;
+    private AtencionDelegado atentionService;
     @Autowired
-    private PacientService pacientService;
+    private PacienteDelegado pacientService;
 
     @GetMapping("/listarAtenciones")
     public String listar(@ModelAttribute(name = "lis") ListUrgency lis, Model model) {

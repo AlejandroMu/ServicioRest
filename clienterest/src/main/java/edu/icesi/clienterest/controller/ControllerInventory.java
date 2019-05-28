@@ -1,8 +1,8 @@
-package com.example.demo.controller;
+package edu.icesi.clienterest.controller;
 
+import edu.icesi.clienterest.Delegado.InventoryDelegado;
+import edu.icesi.clienterest.Delegado.MedicineDelegado;
 import edu.icesi.model.*;
-import com.example.demo.service.InventoryService;
-import com.example.demo.service.MedicineService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class ControllerInventory {
     @Autowired
-    private InventoryService inventories;
+    private InventoryDelegado inventories;
     @Autowired
-    private MedicineService medicines;
+    private MedicineDelegado medicines;
 
     @GetMapping(value = "/crearInventario")
     public String crearInventario(Model model) {
