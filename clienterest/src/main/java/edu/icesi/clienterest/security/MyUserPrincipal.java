@@ -1,10 +1,13 @@
-package edu.icesi.model;
+package edu.icesi.clienterest.security;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import edu.icesi.model.User;
 
 
 

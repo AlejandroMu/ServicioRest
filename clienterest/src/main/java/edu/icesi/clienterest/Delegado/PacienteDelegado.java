@@ -13,6 +13,10 @@ public class PacienteDelegado {
 		return null;
 	}
 
+	public Pacient getPacient(String string) {
+		return null;
+	}
+
 
     
 }

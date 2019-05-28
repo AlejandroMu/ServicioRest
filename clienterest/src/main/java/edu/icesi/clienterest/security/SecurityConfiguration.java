@@ -1,6 +1,4 @@
-package com.example.demo.security;
-
-import com.example.demo.service.UserService;
+package edu.icesi.clienterest.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -12,11 +10,13 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import edu.icesi.clienterest.Delegado.UserDelegado;
+
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Autowired
-	private UserService userDetailsService;
+	private UserDelegado userDetailsService;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {

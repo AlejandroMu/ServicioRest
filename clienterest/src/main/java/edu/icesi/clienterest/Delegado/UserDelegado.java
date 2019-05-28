@@ -1,26 +1,24 @@
-package com.example.demo.service;
+package edu.icesi.clienterest.Delegado;
 
 import java.util.Optional;
-
-import javax.annotation.PostConstruct;
-
-import edu.icesi.model.*;
-import com.example.demo.repository.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.*;
+import javax.annotation.PostConstruct;
 
-@Service
-public class UserService implements UserDetailsService {
-    @Autowired
-    private UserRepository users;
-    @Autowired
-    private PacientService pacientService;
+import edu.icesi.clienterest.security.MyUserPrincipal;
+import edu.icesi.model.*;
 
+/**
+ * UserDelegado
+ */
+public class UserDelegado implements UserDetailsService{
+    @Autowired
+    private PacienteDelegado pacientService;
+    
     @PostConstruct
     public void post() {
         BCryptPasswordEncoder pas = new BCryptPasswordEncoder();
@@ -28,12 +26,15 @@ public class UserService implements UserDetailsService {
         User us = new User("login@gmail.com", p.getNames(), p.getLastNames(), pas.encode("password"), p);
         p.setUser(us);
         us.setState(true);
-        users.save(us);
+        save(us);
 
     }
 
+    private void save(User us) {
+    }
+
     public Optional<User> getUser(String u) {
-        return users.findByUsername(u);
+        return null;//users.findByUsername(u);
     }
 
     @Override
@@ -44,6 +45,6 @@ public class UserService implements UserDetailsService {
         }
         return new MyUserPrincipal(user.get());
     }
-    
+
     
 }
