@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.*;
+import com.example.demo.repository.UserRepository;
 
 /**
  * AtencionControler
@@ -30,6 +31,8 @@ public class AtencionControler {
     private PacientService pacientes;
     @Autowired
     private SupplyService suministros;
+    @Autowired
+    private UserRepository usuarios;
 
     @RequestMapping(value = "/suministros", method = RequestMethod.GET)
     public List<Supply> getSupply() {
@@ -108,5 +111,13 @@ public class AtencionControler {
     public void addMedicine(@RequestBody Medicine med) {
         medicinas.addMedicine(med);
     }
+    @RequestMapping(value = "/usuarios", method = RequestMethod.GET)
+    public User getUser(@RequestParam String name){
+        return usuarios.findByUsername(name).get();
+    }
+    @RequestMapping(value = "/usuarios", method = RequestMethod.POST)
+    public void addUser(@RequestBody User user){
+        usuarios.save(user);
 
+    }
 }
