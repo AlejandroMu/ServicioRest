@@ -3,22 +3,29 @@ package edu.icesi.clienterest.Delegado;
 import java.util.Date;
 import java.util.List;
 
-import edu.icesi.model.UrgencyAtention;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import edu.icesi.clienterest.model.*;
 
 /**
  * AtencionDelegado
  */
+@Service
 public class AtencionDelegado {
+	private RestTemplate rest;
 
-	public List<UrgencyAtention> getAtencions() {
+	public AtencionDelegado(){
+		rest=new RestTemplate();
+	}
+	public List<Atencion> getAtencions() {
 		return null;
 	}
 
-	public List<UrgencyAtention> getAtencions(Date date) {
+	public List<Atencion> getAtencions(Date date) {
 		return null;
 	}
 
-	public void addAtention(UrgencyAtention a) {
+	public void addAtention(Atencion a) {
 	}
 
     

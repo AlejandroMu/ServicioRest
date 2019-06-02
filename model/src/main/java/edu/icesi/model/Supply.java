@@ -36,6 +36,6 @@ public class Supply {
 	private String pathology; 
 	
 	@ManyToOne
-	private UrgencyAtention atencion;
+	private Atencion atencion;
 	
 }

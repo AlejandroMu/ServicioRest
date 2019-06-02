@@ -7,8 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import edu.icesi.model.User;
-
+import edu.icesi.clienterest.model.*;
 
 
 public class MyUserPrincipal implements UserDetails {

@@ -8,8 +8,7 @@ import com.example.demo.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.icesi.model.*;
-
+import com.example.demo.model.*;
 @Service
 public class InventoryService {
     @Autowired

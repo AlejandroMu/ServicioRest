@@ -3,7 +3,7 @@ package edu.icesi.clienterest.Delegado;
 import java.util.Date;
 import java.util.List;
 
-import edu.icesi.model.Medicine;
+import edu.icesi.clienterest.model.*;
 
 /**
  * MedicineDelegado

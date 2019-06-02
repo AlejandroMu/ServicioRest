@@ -10,7 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import javax.annotation.PostConstruct;
 
 import edu.icesi.clienterest.security.MyUserPrincipal;
-import edu.icesi.model.*;
+import edu.icesi.clienterest.model.*;
 
 /**
  * UserDelegado

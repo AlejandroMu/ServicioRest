@@ -10,6 +10,6 @@ import lombok.Data;
 public class ListUrgency{
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
-    private List<UrgencyAtention> list;
+    private List<Atencion> list;
 
 }

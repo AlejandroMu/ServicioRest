@@ -1,7 +1,6 @@
 package edu.icesi.clienterest.Delegado;
 
-import edu.icesi.model.MedicineInventory;
-
+import edu.icesi.clienterest.model.*;
 /**
  * InventoryDelegado
  */

@@ -39,7 +39,7 @@ public class Controller {
     @PostMapping(value = "/evaluar")
     public String evaluar(@RequestParam(value = "action", required = true) String action, RedirectAttributes red) {
         if (action.equals("Realizar Atención")) {
-            UrgencyAtention atention = new UrgencyAtention();
+            Atencion atention = new Atencion();
             red.addFlashAttribute("atencion", atention);
             return "redirect:/atencion";
         } else if (action.equals("Medicamentos")) {

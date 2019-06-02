@@ -5,8 +5,9 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.icesi.model.*;
+import com.example.demo.model.*;
 import com.example.demo.repository.*;
+
 @Service
 public class SupplyService {
 
@@ -19,52 +20,53 @@ public class SupplyService {
 	@Autowired
 	private InventoryService inventories;
 
-
-	public Supply addSupply(Supply newSupply)throws Exception {
-		Pacient p=pacients.findById(newSupply.getPacient().getDocument()).get();
-		Medicine med=medicines.findById(newSupply.getMedicine().getId()).get();
-		if(p!=null&&p.isState()) {
-			if(med!=null){
-				List<MedicineInventory> ientorynv=inventories.filtrar(med);
-				int amountAviable=0;
+	public Supply addSupply(Supply newSupply) throws Exception {
+		Pacient p = pacients.findById(newSupply.getPacient().getDocument()).get();
+		Medicine med = medicines.findById(newSupply.getMedicine().getId()).get();
+		if (p != null && p.isState()) {
+			if (med != null) {
+				List<MedicineInventory> ientorynv = inventories.filtrar(med);
+				int amountAviable = 0;
 				for (MedicineInventory medicineInventory : ientorynv) {
-					amountAviable+=medicineInventory.getAmountAvailable();
-				}				
-				if(amountAviable>=newSupply.getAmount()) {
+					amountAviable += medicineInventory.getAmountAvailable();
+				}
+				if (amountAviable >= newSupply.getAmount()) {
 					newSupply.setDateHour(new Date());
-					newSupply= supplys.save(newSupply);
-					int target=newSupply.getAmount();
+					newSupply = supplys.save(newSupply);
+					int target = newSupply.getAmount();
 					for (MedicineInventory medicineInventory : ientorynv) {
-						int a=medicineInventory.getAmountAvailable();
-						if(target==0) {
+						int a = medicineInventory.getAmountAvailable();
+						if (target == 0) {
 							break;
-						}else if(a>=target) {
-							medicineInventory.setAmountAvailable(a-target);
+						} else if (a >= target) {
+							medicineInventory.setAmountAvailable(a - target);
 							break;
-						}else {
+						} else {
 							medicineInventory.setAmountAvailable(0);
-							target-=a;
+							target -= a;
 
 						}
 					}
-				}else{
-					throw new Exception("El medicamento "+ med.getGenericName() + " solo dispone de "+amountAviable+" unidades");
+				} else {
+					throw new Exception("El medicamento " + med.getGenericName() + " solo dispone de " + amountAviable
+							+ " unidades");
 				}
-			}else {
+			} else {
 				throw new Exception("El medicamento no existe");
 			}
-		}else {
+		} else {
 			throw new Exception("El paciente no esta disponible");
 		}
 		return newSupply;
 	}
+
 	public Supply getSupply(int id) {
-		Supply s=supplys.findById(id).get();
+		Supply s = supplys.findById(id).get();
 		return s;
 	}
+
 	public void remove(Supply supply) {
 		supplys.delete(supply);
 	}
-	
-	
+
 }

@@ -17,7 +17,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import edu.icesi.model.*;
+import com.example.demo.model.*;
 import com.example.demo.repository.MedicineRepository;
 import com.example.demo.repository.PacientRepository;
 import com.example.demo.repository.SupplyRepository;

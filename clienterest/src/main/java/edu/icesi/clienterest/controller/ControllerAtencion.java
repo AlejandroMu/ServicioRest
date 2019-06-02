@@ -31,12 +31,12 @@ public class ControllerAtencion {
             @ModelAttribute(name = "lis") ListUrgency lis, RedirectAttributes red) {
         if (action.equals("Filtrar")) {
 
-            List<UrgencyAtention> filtro = atentionService.getAtencions(lis.getDate());
+            List<Atencion> filtro = atentionService.getAtencions(lis.getDate());
             lis.setList(filtro);
             red.addFlashAttribute("lis", lis);
             return "redirect:/listarAtenciones";
         }else if(action.equals("Agregar Atencion")){
-            UrgencyAtention atention = new UrgencyAtention();
+            Atencion atention = new Atencion();
             red.addFlashAttribute("atencion", atention);
             return "redirect:/atencion";
 
@@ -45,7 +45,7 @@ public class ControllerAtencion {
     }
 
     @GetMapping(value = "/atencion")
-    public String crearAtencion(@ModelAttribute(value = "atencion") UrgencyAtention atencion, Model model) {
+    public String crearAtencion(@ModelAttribute(value = "atencion") Atencion atencion, Model model) {
         if (atencion.getDateHour() == null) {
             atencion.setDateHour(new Date());
         }
@@ -56,7 +56,7 @@ public class ControllerAtencion {
 
     @PostMapping("/atencion")
     public String saveAtencion(@RequestParam(value = "action", required = true) String action,
-           @Validated @ModelAttribute(value = "atencion") UrgencyAtention a, BindingResult result, Model model,
+           @Validated @ModelAttribute(value = "atencion") Atencion a, BindingResult result, Model model,
             RedirectAttributes redirect) {
 
         if (action.equals("Guardar")) {

@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import edu.icesi.model.User;
+import com.example.demo.model.*;
 @Repository
 public interface UserRepository extends CrudRepository<User,Integer>{
     Optional<User> findByUsername(String username);

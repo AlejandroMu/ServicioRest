@@ -24,7 +24,7 @@ public class Pacient {
 	
 	private boolean state;
 	@OneToMany(fetch = FetchType.EAGER)
-	private List<UrgencyAtention> atentions;
+	private List<Atencion> atentions;
 	@OneToMany(fetch = FetchType.EAGER)
 	private List<Supply> supplys;
 	@OneToOne(fetch = FetchType.EAGER)

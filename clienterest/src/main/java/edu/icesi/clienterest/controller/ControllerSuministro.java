@@ -23,7 +23,7 @@ public class ControllerSuministro{
     private MedicineDelegado medicineService;
     
     @GetMapping(value = "/suministro")
-    public String agregarSuministro(@ModelAttribute(value = "atencion") UrgencyAtention atencion,Model m) {
+    public String agregarSuministro(@ModelAttribute(value = "atencion") Atencion atencion,Model m) {
          Supply supl = new Supply();
        m.addAttribute("supply", supl);
         addMedicine(m);
@@ -33,7 +33,7 @@ public class ControllerSuministro{
     }
 
     @PostMapping(value = "/suministro")
-    public String saveSupply(@RequestParam(value = "action",required = true) String action, RedirectAttributes redirect,@ModelAttribute(value = "atencion") UrgencyAtention atencion,
+    public String saveSupply(@RequestParam(value = "action",required = true) String action, RedirectAttributes redirect,@ModelAttribute(value = "atencion") Atencion atencion,
     @Validated @ModelAttribute(name = "supply") Supply s,BindingResult result) {
         if(action.equals("Cancelar")){
             redirect.addFlashAttribute("atencion",atencion);

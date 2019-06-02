@@ -2,7 +2,7 @@ package edu.icesi.clienterest.Delegado;
 
 import java.util.List;
 
-import edu.icesi.model.Pacient;
+import edu.icesi.clienterest.model.*;
 
 /**
  * PacienteDelegado

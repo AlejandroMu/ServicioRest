@@ -5,8 +5,7 @@ import java.util.*;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import edu.icesi.model.Medicine;
-import edu.icesi.model.MedicineInventory;
+import com.example.demo.model.*;
 
 @Repository
 public interface InventoryRepository extends CrudRepository<MedicineInventory, Integer> {

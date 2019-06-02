@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Crear Medicamento</title>
+    <link rel="stylesheet" href="/crear.css">
+</head>
+
+<body>
+    <form th:action="@{/crearMedicamento}" th:object="${medicamento}" method="post">
+        <div class="conteiner">
+
+            <label for="name">Nombre del medicamento</label>
+            <input name="name" type="text" th:field="*{name}" th:value="*{name}">
+            <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+            <br>
+            <label for="generic">Nombre Generico</label>
+            <input name="generic" type="text" th:field="*{genericName}" th:value="*{genericName}">
+            <span class="error" th:if="${#fields.hasErrors('genericName')}" th:errors="*{genericName}"></span>
+            <br>
+            <label for="lab">Laboratorio</label>
+            <input name="lab" type="text" th:field="*{laboratory}" th:value="*{laboratory}">
+            <span class="error" th:if="${#fields.hasErrors('laboratory')}" th:errors="*{laboratory}"></span>
+            <br>
+            <label for="ad">Tipo de administracion</label>
+            <input name="ad" type="text" th:field="*{administationType}" th:value="*{administationType}">
+            <span class="error" th:if="${#fields.hasErrors('administationType')}" th:errors="*{administationType}"></span>
+            <br>
+            <label for="in">Indicaciones</label>
+            <input name="in" type="text" th:field="*{indications}" th:value="*{indications}">
+            <span class="error" th:if="${#fields.hasErrors('indications')}" th:errors="*{indications}"></span>
+            <br>
+            <label for="con">Contra indicaciones</label>
+            <input name="con" type="text" th:field="*{contraIndications}" th:value="*{contraIndications}">
+            <span class="error" th:if="${#fields.hasErrors('contraIndications')}" th:errors="*{contraIndications}"></span>
+            <div class="opciones">
+                <input type="submit" name="action" th:value="Guardar">
+                <input type="submit" name="action" th:value="Cancelar">
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>

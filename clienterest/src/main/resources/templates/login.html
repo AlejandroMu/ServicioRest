@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Iniciar sesion</title>
+    <link rel="stylesheet" href="loginStyle.css" type="text/css">
+</head>
+
+<body>
+    <div class="session">
+        <div class="left">
+
+        </div>
+        <form th:action="@{/login}" method="POST" class="log-in">
+            <div class="logoC">
+                <img class="logo"
+                    src="http://www.acofi.edu.co/eiei2018/wp-content/uploads/2018/05/Logo-Universidad-ICESI.jpg">
+            </div>
+            <h4>Bienvenido al sistema de Enfermeria</h4>
+            <div class="floating-label">
+                <input placeholder="username" name="username" id="username">
+            </div>
+            <div class="floating-label">
+                <input placeholder="Password" type="password" name="password" id="password" autocomplete="off">
+            </div>
+            <input class="button"  type="submit" value="Entrar">
+        </form>
+    </div>
+</body>
+
+</html>
