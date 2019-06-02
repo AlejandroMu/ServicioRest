@@ -35,7 +35,7 @@ public class atencionTest {
 	@Mock
 	private PacientRepository pacients;
 
-	private UrgencyAtention urgency;
+	private Atencion urgency;
 	private Pacient pacient;
 	private List<Supply> supplys;
 	private Optional<Pacient> op;
@@ -49,7 +49,7 @@ public class atencionTest {
 		pacient.setNames("Juan");
 		pacient.setState(true);
 
-		urgency = new UrgencyAtention();
+		urgency = new Atencion();
 		urgency.setPacient(pacient);
 		urgency.setTransfer(true);
 
@@ -106,7 +106,7 @@ public class atencionTest {
 			service.addAtention(urgency);
 			fail();
 		}catch (Exception e) {
-			List<UrgencyAtention> atentions=service.getAtencions();
+			List<Atencion> atentions=service.getAtencions();
 			assertTrue(atentions.isEmpty());
 		}
 		

@@ -21,7 +21,7 @@ public class AtentionService {
 	@Autowired
 	private SupplyService supplyService;
 
-	public boolean addAtention(UrgencyAtention atention) throws Exception {
+	public boolean addAtention(Atencion atention) throws Exception {
 		Pacient pacient = atention.getPacient();
 		List<Supply> supplys = atention.getSupplys();
 		Pacient p1 = pacients.findByDocument(pacient.getDocument());
@@ -64,9 +64,9 @@ public class AtentionService {
 		return true;
 	}
 
-	public List<UrgencyAtention> getAtencions() {
-		List<UrgencyAtention> atention = new ArrayList<UrgencyAtention>();
-		Iterator<UrgencyAtention> it = atentions.findAll().iterator();
+	public List<Atencion> getAtencions() {
+		List<Atencion> atention = new ArrayList<Atencion>();
+		Iterator<Atencion> it = atentions.findAll().iterator();
 		while (it.hasNext()) {
 			atention.add(it.next());
 		}
@@ -74,7 +74,7 @@ public class AtentionService {
 		return atention;
 	}
 
-	public List<UrgencyAtention> getAtencions(Date date) {
+	public List<Atencion> getAtencions(Date date) {
 		return atentions.findByDateHour(date);
 	}
 
