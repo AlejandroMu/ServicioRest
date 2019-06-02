@@ -3,8 +3,7 @@ import java.util.*;
 
 import edu.icesi.clienterest.Delegado.InventoryDelegado;
 import edu.icesi.clienterest.Delegado.MedicineDelegado;
-import edu.icesi.model.*;
-
+import edu.icesi.clienterest.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

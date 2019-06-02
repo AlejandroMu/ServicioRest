@@ -10,8 +10,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.icesi.clienterest.Delegado.AtencionDelegado;
 import edu.icesi.clienterest.Delegado.MedicineDelegado;
-import edu.icesi.model.*;
-
+import edu.icesi.clienterest.model.*;
 
 @SessionAttributes
 @org.springframework.stereotype.Controller

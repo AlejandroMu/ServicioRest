@@ -14,9 +14,11 @@ import edu.icesi.clienterest.model.*;
 public class AtencionDelegado {
 	private RestTemplate rest;
 
+
 	public AtencionDelegado(){
 		rest=new RestTemplate();
 	}
+	
 	public List<Atencion> getAtencions() {
 		return null;
 	}
