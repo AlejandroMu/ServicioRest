@@ -54,4 +54,7 @@ public class InventoryService {
     public MedicineInventory addInventory(MedicineInventory inv) {
         return inventories.save(inv);
     }
+	public void update(MedicineInventory medicineInventory) {
+        inventories.save(medicineInventory);
+	}
 }

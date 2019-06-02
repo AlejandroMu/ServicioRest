@@ -4,6 +4,8 @@ import java.util.*;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,14 +19,38 @@ public class AtentionService {
 	@Autowired
 	private AtentionRepository atentions;
 	@Autowired
-	private PacientRepository pacients;
+	private PacientService pacients;
 	@Autowired
 	private SupplyService supplyService;
+	@Autowired
+	private MedicineService medicines;
 
+	@PostConstruct
+	public void postcons() {
+		List<Supply> supa = new ArrayList<>();
+		Supply sup = new Supply(3, new Date(2019, 06, 8), "observaciones", "patologia");
+		Pacient p = pacients.getPacient("1234");
+		sup.setPacient(p);
+		Medicine med=medicines.getMedicines().get(0);
+		sup.setMedicine(med);
+		supa.add(sup);
+		Atencion nueva = new Atencion(new Date(2010, 04, 21), "generalDescription", "procedureDone", "observations");
+		sup.setAtencion(nueva);
+		nueva.setSupplys(supa);
+		nueva.setPacient(p);
+		try {
+			addAtention(nueva);
+			System.out.println("x");
+		} catch (Exception e) {
+			System.out.println("--- fallo ---");
+			System.out.println(e.getMessage());
+			System.out.println("--- fallo ---");
+		}
+	}
 	public boolean addAtention(Atencion atention) throws Exception {
 		Pacient pacient = atention.getPacient();
 		List<Supply> supplys = atention.getSupplys();
-		Pacient p1 = pacients.findByDocument(pacient.getDocument());
+		Pacient p1 = pacients.getPacient(pacient.getDocument());
 		if (pacient.isState() && p1 != null) {
 			if (supplys != null) {
 				for (Supply supply : supplys) {

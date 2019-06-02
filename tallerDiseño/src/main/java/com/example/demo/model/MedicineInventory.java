@@ -4,6 +4,8 @@ import java.util.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
@@ -19,8 +21,6 @@ public class MedicineInventory {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
-	@ManyToOne
-	private Medicine medicine;
 	private int amountAvailable;
 	@NonNull
 	@NotBlank(message = "Es necesario la ubicacion del inventario")
@@ -28,10 +28,15 @@ public class MedicineInventory {
 	@NonNull
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateExpiration;
+	
+	@ManyToOne
+	@JoinColumn(name = "medicine_id")
+	@JsonIgnore
+	private Medicine medicine;
 
 	@Override
 	public String toString() {
 		return "Cantidad :"+amountAvailable + "\n ubicacion " + location;
 	}
-
+	
 }

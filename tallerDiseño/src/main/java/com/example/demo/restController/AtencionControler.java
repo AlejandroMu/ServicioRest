@@ -26,9 +26,40 @@ public class AtencionControler {
     private InventoryService inventarios;
     @Autowired
     private MedicineService medicinas;
+    @Autowired
+    private PacientService pacientes;
+    @Autowired
+    private SupplyService suministros;
 
+    @RequestMapping(value = "/suministros", method = RequestMethod.GET)
+    public List<Supply> getSupply() {
+        return suministros.getSupplys();
+    }
 
-    @RequestMapping(name = "/atenciones", method = RequestMethod.POST)
+    @RequestMapping(value = "/suministros", method = RequestMethod.POST)
+    public void addSupply(@RequestBody Supply sup) {
+        try {
+            suministros.addSupply(sup);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @RequestMapping(value = "/pacientes", method = RequestMethod.GET)
+    public List<Pacient> getPacientes(@RequestParam(value = "id",required = false) String id) {
+        if (id != null) {
+
+            pacientes.getPacient(id);
+        }
+        return pacientes.getPacients();
+    }
+
+    @RequestMapping(value = "/pacientes", method = RequestMethod.POST)
+    public void addPaciente(@RequestBody Pacient pacient) {
+        pacientes.addPaciente(pacient);
+    }
+
+    @RequestMapping(value = "/atenciones", method = RequestMethod.POST)
     public void addAtencion(@RequestBody Atencion atencion) {
         try {
             atenciones.addAtention(atencion);
@@ -37,24 +68,24 @@ public class AtencionControler {
         }
     }
 
-    @RequestMapping(name = "/atenciones", method = RequestMethod.GET)
-    public List<Atencion> getAtenciones(@RequestParam(name = "date",required = false) Date date) {
-        if(date!=null){
+    @RequestMapping(value = "/atenciones", method = RequestMethod.GET)
+    public List<Atencion> getAtenciones(@RequestParam(value = "date", required = false) Date date) {
+        if (date != null) {
             return atenciones.getAtencions(date);
-        }else{
+        } else {
             return atenciones.getAtencions();
         }
 
     }
 
-    @RequestMapping(name = "/inventarios", method = RequestMethod.POST)
+    @RequestMapping(value = "/inventarios", method = RequestMethod.POST)
     public void addInventarion(@RequestBody MedicineInventory inventario) {
         inventarios.addInventory(inventario);
     }
 
-    @RequestMapping(name = "/inventarios", method = RequestMethod.GET)
-    public List<MedicineInventory> getInventarios(@RequestParam(name = "medicina", required = false) Medicine medicina,
-            @RequestParam(name = "fecha", required = false) Date fecha) {
+    @RequestMapping(value = "/inventarios", method = RequestMethod.GET)
+    public List<MedicineInventory> getInventarios(@RequestParam(value = "medicina", required = false) Medicine medicina,
+            @RequestParam(value = "fecha", required = false) Date fecha) {
         if (medicina != null) {
             return inventarios.filtrar(medicina);
         } else if (fecha != null) {
@@ -64,16 +95,17 @@ public class AtencionControler {
         }
     }
 
-    @RequestMapping(name = "/medicinas", method = RequestMethod.GET)
-    public List<Medicine> getMedicines(@RequestParam(name="fecha", required=false) Date fecha) {
-        if(fecha!=null){
+    @RequestMapping(value = "/medicinas", method = RequestMethod.GET)
+    public List<Medicine> getMedicines(@RequestParam(value = "fecha", required = false) Date fecha) {
+        if (fecha != null) {
             return medicinas.filtrar(fecha);
-        }else{
+        } else {
             return medicinas.getMedicines();
         }
     }
-    @RequestMapping(name = "/medicinas", method = RequestMethod.POST)
-    public void addMedicine(@RequestBody Medicine med){
+
+    @RequestMapping(value = "/medicinas", method = RequestMethod.POST)
+    public void addMedicine(@RequestBody Medicine med) {
         medicinas.addMedicine(med);
     }
 

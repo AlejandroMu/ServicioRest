@@ -21,14 +21,16 @@ public class Pacient {
 	private String lastNames;
 	@NonNull
 	private String academicProgram;
-	
 	private boolean state;
-	@OneToMany(fetch = FetchType.EAGER)
+
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "pacient")
 	private List<Atencion> atentions;
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER,mappedBy = "pacient")
 	private List<Supply> supplys;
 	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id")
 	private User user;
+
 	public String toString(){
 		return document+" "+names+" "+lastNames;
 	}
