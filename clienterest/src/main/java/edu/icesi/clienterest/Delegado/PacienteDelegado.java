@@ -15,14 +15,18 @@ public class PacienteDelegado {
 
 	private RestTemplate template;
 
+	public PacienteDelegado(){
+		template=new RestTemplate();
+	}
+
 	public List<Pacient> getPacients() {
 		return null;
 	}
 
-	public Pacient getPacient(String string) {
+	public Pacient getPacient(String id) {
 
-		Pacient resultado = template.getForObject("https://serverrestpacientes.herokuapp.com/pacientes?", Pacient.class);
-		return null;
+		Pacient resultado = template.getForObject("https://servicerestpacientes.herokuapp.com/pacientes?id="+id, Pacient.class);
+		return resultado;
 	}
 
 
