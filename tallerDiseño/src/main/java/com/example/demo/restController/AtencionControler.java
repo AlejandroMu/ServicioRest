@@ -1,5 +1,6 @@
 package com.example.demo.restController;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -51,8 +52,9 @@ public class AtencionControler {
     @RequestMapping(value = "/pacientes", method = RequestMethod.GET)
     public List<Pacient> getPacientes(@RequestParam(value = "id",required = false) String id) {
         if (id != null) {
-
-            pacientes.getPacient(id);
+            List<Pacient> list=new ArrayList<>();
+            list.add(pacientes.getPacient(id));
+            return list;
         }
         return pacientes.getPacients();
     }

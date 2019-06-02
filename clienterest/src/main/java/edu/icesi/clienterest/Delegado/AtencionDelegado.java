@@ -12,8 +12,8 @@ import edu.icesi.clienterest.model.*;
  */
 @Service
 public class AtencionDelegado {
-	private RestTemplate rest;
 
+	private RestTemplate rest;
 
 	public AtencionDelegado(){
 		rest=new RestTemplate();

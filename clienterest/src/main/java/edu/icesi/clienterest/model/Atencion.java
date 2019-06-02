@@ -10,6 +10,8 @@ import java.util.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -23,8 +25,6 @@ public class Atencion {
 	@NonNull
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date dateHour;
-	@ManyToOne
-	private Pacient pacient;
 	@NonNull
 	@NotBlank(message = "La descipcion es requerida")
 	private String generalDescription;
@@ -37,7 +37,12 @@ public class Atencion {
 	@NonNull
 	@NotBlank(message = "Es necesario las observaciones")
 	private String observations;
-	@NonNull
-	@OneToMany(fetch=FetchType.EAGER)
+	
+
+	@OneToMany(fetch=FetchType.EAGER,cascade = CascadeType.ALL,mappedBy = "atencion")
 	private List<Supply> supplys;
+	@ManyToOne
+	@JoinColumn(name = "pacient_id")
+	@JsonIgnore
+	private Pacient pacient;
 }
