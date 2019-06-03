@@ -31,7 +31,8 @@ public class InventoryDelegado {
 		if(inventario==null)
 			throw new IllegalArgumentException("Inventary is null");
 		
-		rest.put(url()+"/inventarios", inventario);
+		
+		rest.postForObject(url()+"/inventarios", inventario, MedicineInventory.class);
 	}
 	public List<MedicineInventory> filtrar(Medicine med){
 		ResponseEntity<List<MedicineInventory>> rEntity = rest.exchange(url() + "/inventarios", HttpMethod.GET, null,

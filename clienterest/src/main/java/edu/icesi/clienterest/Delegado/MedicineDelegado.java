@@ -42,7 +42,8 @@ public class MedicineDelegado {
 		if(medicine==null) 
 			throw new IllegalArgumentException("Atencion is empty");
 		
-		rest.put(url()+"/medicinas", medicine);
+		
+		rest.postForObject(url()+"/medicinas", medicine, Medicine.class);
 	}
 
 	public List<Medicine> filtrar(Date date) {
