@@ -21,7 +21,6 @@ import edu.icesi.clienterest.model.*;
 public class UserDelegado implements UserDetailsService{
     @Autowired
     private PacienteDelegado pacientService;
-    private User test;
     @PostConstruct
     public void post() {
         BCryptPasswordEncoder pas = new BCryptPasswordEncoder();
@@ -29,7 +28,6 @@ public class UserDelegado implements UserDetailsService{
         User us = new User("login@gmail.com", p.getNames(), p.getLastNames(), pas.encode("password"), p);
         p.setUser(us);
         us.setState(true);
-        test=us;
         save(us);
 
     }
@@ -38,7 +36,7 @@ public class UserDelegado implements UserDetailsService{
     }
 
     public User getUser(String u) {
-        return test;//users.findByUsername(u);
+        return null;
     }
 
     @Override
