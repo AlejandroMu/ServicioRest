@@ -2,6 +2,9 @@ package edu.icesi.clienterest.Delegado;
 
 import java.util.List;
 
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -20,12 +23,27 @@ public class PacienteDelegado {
 		template=new RestTemplate();
 	}
 
+	public String url() {
+		return "https://servicerestpacientes.herokuapp.com";
+	}
 	public List<Pacient> getPacients() {
-		return null;
+		ResponseEntity<List<Pacient>> rEntity = template.exchange(url() + "/pacientes", HttpMethod.GET, null,
+				new ParameterizedTypeReference<List<Pacient>>() {
+				});
+		if (rEntity.getStatusCode() == HttpStatus.PRECONDITION_FAILED)
+			throw new IllegalArgumentException("Pacients is empty");
+
+		return rEntity.getBody();
 	}
 
 	public Pacient getPacient(String id) {
-		return null;
+		if(id==null) {
+			throw new IllegalArgumentException("id is empty");
+		}
+		ResponseEntity<Pacient> rEntity=template.getForEntity(url()+"/pacientes", Pacient.class,id);
+		if (rEntity.getStatusCode() == HttpStatus.PRECONDITION_FAILED)
+			throw new IllegalArgumentException("Pacients is empty");
+		return rEntity.getBody();
 	}
 
 
