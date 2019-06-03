@@ -34,8 +34,6 @@ public class UserDelegado implements UserDetailsService{
         p.setUser(us);
         us.setState(true);
         save(us);
-        
-
     }
     public String url() {
 		return "https://servicerestpacientes.herokuapp.com";
