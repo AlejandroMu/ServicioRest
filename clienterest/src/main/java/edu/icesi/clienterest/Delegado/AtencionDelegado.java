@@ -16,11 +16,14 @@ import edu.icesi.clienterest.model.*;
  */
 @Service
 public class AtencionDelegado {
-	private RestTemplate rest;
 
+<<<<<<< HEAD
 	public AtencionDelegado() {
 		rest = new RestTemplate();
 	}
+=======
+	private RestTemplate rest;
+>>>>>>> d285b0857a946ab2e1aee1ec2756716fda6d924e
 
 	public String url() {
 		return "https://servicerestpacientes.herokuapp.com";

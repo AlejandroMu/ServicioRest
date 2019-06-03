@@ -1,15 +1,19 @@
 package edu.icesi.clienterest.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import java.util.*;
 
 @Entity
 @Data
@@ -37,6 +41,6 @@ public class Medicine {
 	@NonNull
 	private String contraIndications;
 	
-	
-	
+	@OneToMany(mappedBy = "medicine",cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	private List<MedicineInventory> inventarios;
 }

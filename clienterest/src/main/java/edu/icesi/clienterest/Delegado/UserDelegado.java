@@ -7,6 +7,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
 import javax.annotation.PostConstruct;
 
 import edu.icesi.clienterest.security.MyUserPrincipal;
@@ -15,10 +17,11 @@ import edu.icesi.clienterest.model.*;
 /**
  * UserDelegado
  */
+@Service
 public class UserDelegado implements UserDetailsService{
     @Autowired
     private PacienteDelegado pacientService;
-    
+    private User test;
     @PostConstruct
     public void post() {
         BCryptPasswordEncoder pas = new BCryptPasswordEncoder();
@@ -26,6 +29,7 @@ public class UserDelegado implements UserDetailsService{
         User us = new User("login@gmail.com", p.getNames(), p.getLastNames(), pas.encode("password"), p);
         p.setUser(us);
         us.setState(true);
+        test=us;
         save(us);
 
     }
@@ -33,17 +37,14 @@ public class UserDelegado implements UserDetailsService{
     private void save(User us) {
     }
 
-    public Optional<User> getUser(String u) {
-        return null;//users.findByUsername(u);
+    public User getUser(String u) {
+        return test;//users.findByUsername(u);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> user=getUser(username);
-        if(!user.isPresent()){
-            throw new UsernameNotFoundException(username);
-        }
-        return new MyUserPrincipal(user.get());
+        User user=getUser(username);
+        return new MyUserPrincipal(user);
     }
 
     
