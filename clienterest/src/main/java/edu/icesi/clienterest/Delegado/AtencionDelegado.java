@@ -52,7 +52,8 @@ public class AtencionDelegado {
 		if(a==null) 
 			throw new IllegalArgumentException("Atencion is empty");
 		
-		rest.put(url()+"/atenciones", a);
+		
+		rest.postForObject(url()+"/atenciones", a, Atencion.class);
 	}
 
 }

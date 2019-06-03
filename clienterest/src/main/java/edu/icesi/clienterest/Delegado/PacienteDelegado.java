@@ -37,15 +37,16 @@ public class PacienteDelegado {
 	}
 
 	public Pacient getPacient(String id) {
-		if(id==null) {
-			throw new IllegalArgumentException("id is empty");
-		}
-		ResponseEntity<Pacient> rEntity=template.getForEntity(url()+"/pacientes", Pacient.class,id);
+		ResponseEntity<List<Pacient>> rEntity = template.exchange(url() + "/pacientes?id="+id, HttpMethod.GET, null,
+				new ParameterizedTypeReference<List<Pacient>>() {
+				});
 		if (rEntity.getStatusCode() == HttpStatus.PRECONDITION_FAILED)
 			throw new IllegalArgumentException("Pacients is empty");
-		return rEntity.getBody();
+
+		return rEntity.getBody().get(0);
 	}
 
+	
 
     
 }
