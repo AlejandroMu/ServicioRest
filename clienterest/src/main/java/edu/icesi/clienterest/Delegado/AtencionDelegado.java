@@ -31,7 +31,7 @@ public class AtencionDelegado {
 				new ParameterizedTypeReference<List<Atencion>>() {
 				});
 		if (rEntity.getStatusCode() == HttpStatus.PRECONDITION_FAILED)
-			throw new IllegalArgumentException("Atencions it's empty");
+			throw new IllegalArgumentException("Atencions is empty");
 
 		return rEntity.getBody();
 	}
@@ -39,16 +39,20 @@ public class AtencionDelegado {
 	public List<Atencion> getAtencions(Date date) {
 		if (date == null)
 			throw new IllegalArgumentException("Date is null");
-		ResponseEntity<List<Atencion>> rEntity = rest.exchange(url() + "/atenciones", HttpMethod.GET, date,
+		ResponseEntity<List<Atencion>> rEntity = rest.exchange(url() + "/atenciones?date="+date, HttpMethod.GET, null,
 				new ParameterizedTypeReference<List<Atencion>>() {
 				});
-		return null;
+		if (rEntity.getStatusCode() == HttpStatus.PRECONDITION_FAILED)
+			throw new IllegalArgumentException("Atencions is empty");
+
+		return rEntity.getBody();
 	}
 
 	public void addAtention(Atencion a) {
-		if(a==null) {
-			
-		}
+		if(a==null) 
+			throw new IllegalArgumentException("Atencion is empty");
+		
+		rest.put(url()+"/atenciones", a);
 	}
 
 }
