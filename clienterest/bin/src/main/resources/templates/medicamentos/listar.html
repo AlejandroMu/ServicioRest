@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Medicamentos</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <form th:action="@{/filtrarM}" th:object="${listaMedicina}" method="post">
+        <div class="filtro">
+            <input class="date" type="date" th:field="*{date}" th:value="*{date}">
+            <input class="button" name="action" type="submit" value="Filtrar">
+        </div>
+        <div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Nombre generico</th>
+                        <th>Laboratorio</th>
+                        <th>Tipo de administracion</th>
+                        <th>Indicaciones</th>
+                        <th>ContraIndicaciones</th>
+                        <th>Inventarios</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each=" item : *{list}">
+                        <td th:text="${item.id}"></td>
+                        <td th:text="${item.name}"></td>
+                        <td th:text="${item.genericName}"></td>
+                        <td th:text="${item.laboratory}"></td>
+                        <td th:text="${item.administationType}"></td>
+                        <td th:text="${item.indications}"></td>
+                        <td th:text="${item.contraIndications}"></td>
+                        <td>
+                            <select>
+                                <option th:each="inven : ${inventarios.filtrar(item)}" th:text="${inven}"></option>
+                            </select>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="opciones">
+            <input class="button" type="submit"  name="action" value="Agregar Medicina">
+            <input class="button" type="submit"  name="action" value="Agregar Inventario">
+            <input class="button" type="submit"  name="action" value="Ir a Inicio">
+
+        </div>
+    </form>
+</body>
+
+</html>

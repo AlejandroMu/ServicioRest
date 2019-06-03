@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Agregar Suministro</title>
+    <link rel="stylesheet" href="/crear.css">
+</head>
+
+<body>
+    <form th:action="@{/suministro}" method="post" th:object="${supply}">
+        <div class="atencion">
+            <input type="hidden" th:field="${atencion.id}" th:value="${atencion.id}">
+            <input type="hidden" th:field="${atencion.dateHour}" th:value="${atencion.dateHour}">
+            <input type="hidden" th:field="${atencion.pacient}" th:value="${atencion.pacient.document}">
+            <input type="hidden" th:field="${atencion.generalDescription}" th:value="${atencion.generalDescription}">
+            <input type="hidden" th:field="${atencion.procedureDone}" th:value="${atencion.procedureDone}">
+            <input type="hidden" th:field="${atencion.transfer}" th:value="${atencion.transfer}">
+            <input type="hidden" th:field="${atencion.placeTransfer}" th:value="${atencion.placeTransfer}">
+            <input type="hidden" th:field="${atencion.observations}" th:value="${atencion.observations}">
+            <div th:each="s , count: ${atencion.supplys}">
+                </li>
+                <input type="hidden" th:field="${atencion.supplys[__${count.index}__].id}"
+                    th:value="${atencion.supplys[__${count.index}__].id}">
+                <input type="hidden" th:field="${atencion.supplys[__${count.index}__].medicine}"
+                    th:value="${atencion.supplys[__${count.index}__].medicine}">
+                <input type="hidden" th:field="${atencion.supplys[__${count.index}__].amount}"
+                    th:value="${atencion.supplys[__${count.index}__].amount}">
+                <input type="hidden" th:field="${atencion.supplys[__${count.index}__].pacient}"
+                    th:value="${atencion.supplys[__${count.index}__].pacient}">
+                <input type="hidden" th:field="${atencion.supplys[__${count.index}__].dateHour}"
+                    th:value="${atencion.supplys[__${count.index}__].dateHour}">
+                <input type="hidden" th:field="${atencion.supplys[__${count.index}__].observation}"
+                    th:value="${atencion.supplys[__${count.index}__].observation}">
+                <input type="hidden" th:field="${atencion.supplys[__${count.index}__].pathology}"
+                    th:value="${atencion.supplys[__${count.index}__].pathology}">
+                <input type="hidden" th:field="${atencion.supplys[__${count.index}__].atencion}"
+                    th:value="${atencion.supplys[__${count.index}__].atencion}">
+            </div>
+        </div>
+        <div class="conteiner">
+
+            <label for="med">Medicina a Suministrar</label>
+            <select name="med" th:field="*{medicine}">
+                <option th:each="m : ${medicines}" th:value="${m.id}" th:text="${m.genericName}"></option>
+            </select>
+            <br>
+            <label for="ca">Cantidad a Suministrar</label>
+            <input type="number" min="1" name="ca" th:field="*{amount}">
+            <br>
+            <label for="ob">observaciones</label>
+            <input type="text" name="ob" th:field="*{observation}">
+            <br>
+            <label for="p">Patologia</label>
+            <input type="text" name="p" th:field="*{pathology}">
+            <span th:if="${#fields.hasErrors('pathology')}" th:errors="*{pathology}"></span>
+                 <br>
+                 <div class="opciones">
+                     <input type="submit" name="action" value="Guardar">
+                     <input type="submit" name="action" value="Cancelar">
+                 </div>
+            </div>
+        </form>
+
+    </body>
+</html>

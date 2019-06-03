@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Bienvenido</title>
+    <link rel="stylesheet" href="opciones.css">
+</head>
+
+<body>
+    <div class="log">
+        <form th:action="@{/logout}" method="post">
+                <input class="logout" type="submit" name="action" value="Cerrar sesion">
+        </form>
+
+    </div>
+    <form th:action="@{/evaluar}" th:object="${user}" method="post">
+        <div class="conteiner">
+            <input class="opcion" type="submit" name="action" value="Realizar Atención">
+            <input class="opcion" type="submit" name="action" value="Medicamentos">
+            <input class="opcion" type="submit" name="action" value="Listar Atenciones">
+            <input class="opcion" type="submit" name="action" value="Listar Medicamentos">
+            <input class="opcion" type="submit" name="action" value="Crear Inventario">
+        </div>
+    </form>
+</body>
+
+</html>

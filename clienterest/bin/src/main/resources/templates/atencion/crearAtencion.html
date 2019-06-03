@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Crear Atención</title>
+    <link rel="stylesheet" href="/crear.css">
+</head>
+
+<body>
+    <form th:action="@{/atencion}" th:object="${atencion}" method="POST">
+        <div class="hidden">
+            <input type="hidden" th:field="*{id}" th:value="*{id}">
+            <input type="hidden" th:field="*{dateHour}" th:value="*{dateHour}">
+        </div>
+        <div class="conteiner">
+            <label for="pacient">Paciente</label>
+            <select name="pacient" th:field="*{pacient}">
+                <option th:each=" p: ${pacients}" th:value="${p.document}" th:text="${p}"></option>
+            </select>
+            <br>
+            <label for="descripcion">descripcion Generar</label>
+            <input name="descripcion" type="text" th:field="*{generalDescription}"><span class="error" th:if="${#fields.hasErrors('generalDescription')}" th:errors="*{generalDescription}"></span>
+            <br>
+            <label for="fecha">Fecha de atencion</label>
+            <input type="date" th:field="*{dateHour}" th:value="*{dateHour}">
+        <br>
+        <label for="pro">Procedimiento realizado</label>
+        <input name="pro" type="text" th:field="*{procedureDone}"><span class="error" th:if="${#fields.hasErrors('procedureDone')}" th:errors="*{procedureDone}"></span>
+        <br>
+        <label for="tra">Transferido?</label>
+        <input id="check" name="tra" type="checkbox" th:field="*{transfer}">
+        <br>
+        <label id="lPlace" for="lugar">Lugar de transferencia</label>
+        <input id="iPlace" name="lugar" type="text"  th:field="*{placeTransfer}">
+        <br>
+        <label for="ob">Observaciones</label>
+        <input name="ob" type="text" th:field="*{observations}"><span class="error" th:if="${#fields.hasErrors('observations')}" th:errors="*{observations}"></span>
+        <br>
+        <ul>
+            <p>Suministros Asignados</p>
+            <div th:each="s , count: *{supplys}">
+                <li >
+                    <input class="suministros" type="submit" name="action" th:value="${count.index}" value="eliminar" th:text="${s.amount+ ' '+s.medicine.genericName}">
+                </li>
+                <input type="hidden" th:field="*{supplys[__${count.index}__].id}"
+                    th:value="*{supplys[__${count.index}__].id}">
+                <input type="hidden" th:field="*{supplys[__${count.index}__].medicine}"
+                    th:value="*{supplys[__${count.index}__].medicine}">
+                <input type="hidden" th:field="*{supplys[__${count.index}__].amount}"
+                    th:value="*{supplys[__${count.index}__].amount}">
+                <input type="hidden" th:field="*{supplys[__${count.index}__].pacient}"
+                    th:value="*{supplys[__${count.index}__].pacient}">
+                <input type="hidden" th:field="*{supplys[__${count.index}__].dateHour}"
+                    th:value="*{supplys[__${count.index}__].dateHour}">
+                <input type="hidden" th:field="*{supplys[__${count.index}__].observation}"
+                    th:value="*{supplys[__${count.index}__].observation}">
+                <input type="hidden" th:field="*{supplys[__${count.index}__].pathology}"
+                    th:value="*{supplys[__${count.index}__].pathology}">
+                <input type="hidden" th:field="*{supplys[__${count.index}__].atencion}"
+                    th:value="*{supplys[__${count.index}__].atencion}">
+            </div>
+            <input type="submit" name="action" value="Añadir Suministro">
+        </ul>
+        <p th:if="${error}" th:text="${error}"></p>
+        <div class="opciones">
+            <input type="submit" name="action" value="Guardar">
+            <input type="submit" name="action" value="Cancelar">
+        </div>
+    </div>
+    </form>
+    <script>
+        check = document.getElementById("check")
+        label = document.getElementById("lPlace")
+        input = document.getElementById("iPlace")
+        style = check.checked ? "visible" : "hidden"
+        label.style.visibility = style
+        input.style.visibility = style
+        check.addEventListener("click", function () {
+            style = check.checked ? "visible" : "hidden"
+            label.style.visibility = style
+            input.style.visibility = style
+
+
+        })
+
+
+    </script>
+</body>
+
+</html>
