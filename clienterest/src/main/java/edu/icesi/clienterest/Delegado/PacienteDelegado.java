@@ -13,7 +13,6 @@ import edu.icesi.clienterest.model.*;
  */
 @Service
 public class PacienteDelegado {
-	public static final String URL="https://servicerestpacientes.herokuapp.com/pacientes";
 
 	private RestTemplate template;
 
@@ -26,16 +25,7 @@ public class PacienteDelegado {
 	}
 
 	public Pacient getPacient(String id) {
-		try{
-		String query=URL + "?id="+id;
-		ResponseEntity<Pacient> response= template.getForEntity(query, Pacient.class);
-		return response.getBody();
-		}catch(Exception e){
-			System.out.println("---error--");
-			System.out.println(e.getMessage());
-			System.out.println("---error--");
-			return null;
-		}
+		return null;
 	}
 
 
