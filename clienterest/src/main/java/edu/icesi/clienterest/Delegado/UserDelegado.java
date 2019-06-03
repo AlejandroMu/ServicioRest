@@ -1,6 +1,5 @@
 package edu.icesi.clienterest.Delegado;
 
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -60,6 +59,7 @@ public class UserDelegado implements UserDetailsService{
         User user=getUser(username);
         return new MyUserPrincipal(user);
     }
+
 
     
 }
