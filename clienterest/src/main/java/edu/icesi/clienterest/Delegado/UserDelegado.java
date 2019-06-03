@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
 
@@ -22,6 +23,13 @@ public class UserDelegado implements UserDetailsService{
     @Autowired
     private PacienteDelegado pacientService;
     private User test;
+    private RestTemplate rest;
+
+	
+
+	public String url() {
+		return "https://servicerestpacientes.herokuapp.com";
+	}
     @PostConstruct
     public void post() {
         BCryptPasswordEncoder pas = new BCryptPasswordEncoder();
@@ -31,13 +39,19 @@ public class UserDelegado implements UserDetailsService{
         us.setState(true);
         test=us;
         save(us);
+        rest = new RestTemplate();
 
     }
 
     private void save(User us) {
+    	if(us==null) 
+			throw new IllegalArgumentException("User is empty");
+		
+		rest.put(url()+"/atenciones", us);
     }
 
     public User getUser(String u) {
+    	
         return test;//users.findByUsername(u);
     }
 
