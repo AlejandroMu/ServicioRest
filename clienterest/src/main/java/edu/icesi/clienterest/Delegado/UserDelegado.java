@@ -41,7 +41,7 @@ public class UserDelegado implements UserDetailsService{
     public String url() {
 		return "https://servicerestpacientes.herokuapp.com";
 	}
-    private void save(User us) {
+    public void save(User us) {
     	if(us==null) 
 			throw new IllegalArgumentException("User is empty");
 		

@@ -43,10 +43,10 @@ public class InventoryDelegado {
 
 		return fixList(rEntity.getBody(), med);
 	}
-	public List<MedicineInventory> fixList(List<MedicineInventory> list,Medicine med){
+	private List<MedicineInventory> fixList(List<MedicineInventory> list,Medicine med){
 		List<MedicineInventory> retur=new ArrayList<>();
 		for (int i = 0; i < list.size(); i++) {
-			if(med.getId()==list.get(i).getId()) {
+			if(med.getInventarios().get(0).getId()==list.get(i).getId()) {
 				retur.add(list.get(i));
 			}
 		}
